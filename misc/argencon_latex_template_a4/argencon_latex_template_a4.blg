@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: argencon_latex_template_a4.aux
+The style file: IEEEtran.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: IEEEexample.bib
+Warning--string name "ieee_j_edl" is undefined
+--line 253 of file IEEEexample.bib
+-- IEEEtran.bst version 1.12 (2007/01/11) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in IEEEexample:article_typical
+
+Done.
+You've used 12 entries,
+            4024 wiz_defined-function locations,
+            893 strings with 9156 characters,
+and the built_in function-call counts, 5752 in all, are:
+= -- 445
+> -- 112
+< -- 27
++ -- 65
+- -- 26
+* -- 259
+:= -- 951
+add.period$ -- 21
+call.type$ -- 12
+change.case$ -- 15
+chr.to.int$ -- 66
+cite$ -- 13
+duplicate$ -- 451
+empty$ -- 513
+format.name$ -- 25
+if$ -- 1271
+int.to.chr$ -- 0
+int.to.str$ -- 12
+missing$ -- 96
+newline$ -- 63
+num.names$ -- 11
+pop$ -- 228
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 449
+stack$ -- 0
+substring$ -- 108
+swap$ -- 332
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 12
+warning$ -- 1
+while$ -- 15
+width$ -- 14
+write$ -- 126
+(There were 2 warnings)
