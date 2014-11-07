@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><script id="bug.surrogate.1">var urchinTracker=function(){},_gaq={push:function(){try {if(arguments[0][0]=='_link')window.location.href=arguments[0][1]}catch(er){}}},_gat={_createTracker:function(){}, _getTracker:function(){return{__noSuchMethod__:function(){},_link:function(o){if(o)location.href=o;},_linkByPost:function(){return true;},_getLinkerUrl:function(o){return o;},_trackEvent:function(){}}}};</script><head>
+    <title>Quick-R: Factor Analysis</title>
+    <meta name="Description" content="Factor Analysis, PCA, and SEM">
+    <meta name="Keywords" content="R, Tutorial, Statistics">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <meta name="Distribution" content="Global">
+    <meta name="Author" content="Robert Kabacoff - robk@statmethods.net">
+    <meta name="Robots" content="index,follow">
+    <meta name="verify-v1" content="mRsSDOT/ebuSJJB2GXuo1UZi3nZ+NsE+JIBwg77QtNE=">
+    <meta name="y_key" content="c94970a1faf084da">
+    <link href="Quick-R:%20Factor%20Analysis_archivos/style.css" rel="stylesheet" type="text/css">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55355690-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+    <div id="header">
+        <a href="http://www.statmethods.net/"><img id="logo" src="Quick-R:%20Factor%20Analysis_archivos/logo.gif" alt=""></a>
+        <div id="menu">
+            <ul>
+		        <li><a href="http://www.statmethods.net/index.html">Home</a></li>
+		        <li>|<a href="http://www.statmethods.net/interface/index.html">Interface</a></li>
+		        <li>|<a href="http://www.statmethods.net/input/index.html">Input</a></li>
+		        <li>|<a href="http://www.statmethods.net/management/index.html">Manage</a></li>
+		        <li>|<a href="http://www.statmethods.net/stats/index.html">Stats</a></li>
+			    <li>|<a href="http://www.statmethods.net/advstats/index.html">Adv Stats</a></li>
+			    <li>|<a href="http://www.statmethods.net/graphs/index.html">Graphs</a></li>
+			    <li>|<a href="http://www.statmethods.net/advgraphs/index.html">Adv Graphs</a></li>
+			     <li>|<a href="http://statmethods.wordpress.com/">Blog</a></li>
+            </ul>
+   </div>
+        <h1><a href="http://www.statmethods.net/">Quick-R</a></h1>
+        <p id="subtitle">accessing the power of R </p>
+<form id="search" action="http://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_self">
+            <input name="si" value="23055275" type="hidden">
+			<input name="pid" value="r" type="hidden">
+		    <input name="n" value="0" type="hidden">
+			<input name="_charset_" value="" type="hidden">
+			<input name="bcd" value="÷" type="hidden">
+			<input name="nsb" type="hidden">
+			<input name="css" value="" type="hidden">
+			<input class="text" name="query" type="text">
+			<input name="search" class="submit" value="Search" type="submit">
+        </form>
+</div><!-- header -->
+    <div id="main"><div id="main2">
+            <div id="sidebar">
+                <h2>Advanced Statistics</h2>
+                <ul>
+                    <li><a href="http://www.statmethods.net/advstats/glm.html">Generalized Linear Models </a></li>
+					<li><a href="http://www.statmethods.net/advstats/discriminant.html">Discriminant Function </a></li>
+					<li><a href="http://www.statmethods.net/advstats/timeseries.html">Time Series </a></li>
+					<li><a href="http://www.statmethods.net/advstats/factor.html">Factor Analysis </a></li>
+					<li><a href="http://www.statmethods.net/advstats/ca.html">Correspondence Analysis </a></li>
+					<li><a href="http://www.statmethods.net/advstats/mds.html">Multidimensional Scaling </a></li>
+					<li><a href="http://www.statmethods.net/advstats/cluster.html">Cluster Analysis   </a></li>
+					<li><a href="http://www.statmethods.net/advstats/cart.html">Tree-Based Models </a></li>
+					<li><a href="http://www.statmethods.net/advstats/bootstrapping.html">Bootstrapping  </a></li>
+				    <li><a href="http://www.statmethods.net/advstats/matrix.html">Matrix Algebra </a></li>
+
+            </ul>
+                    <h2>R in Action</h2>
+               <div class="box">
+                    <p><a href="http://www.manning.com/kabacoff2/?a_aid=RiA2ed&amp;a_bid=5c2b1e1d"><img src="Quick-R:%20Factor%20Analysis_archivos/kabacoff_cover150.jpg" alt="R in Action" class="float-left" height="90" width="73"></a></p>
+                    <p><a href="http://www.manning.com/kabacoff2/?a_aid=RiA2ed&amp;a_bid=5c2b1e1d" target="_blank">R in Action</a> (2nd ed) significantly expands upon this material.
+					Use promo code <strong>ria38</strong> for a 38% discount.</p>
+
+                </div>
+                <h2>Top Menu</h2>
+                <ul>
+                    <li><a href="http://www.statmethods.net/index.html">Home</a></li>
+                    <li><a href="http://www.statmethods.net/interface/index.html">The R Interface</a></li>
+                    <li><a href="http://www.statmethods.net/input/index.html">Data Input</a></li>
+                    <li><a href="http://www.statmethods.net/management/index.html">Data Management</a></li>
+                    <li><a href="http://www.statmethods.net/stats/index.html">Basic Statistics</a></li>
+				    <li><a href="http://www.statmethods.net/advstats/index.html">Advanced Statistics</a></li>
+			        <li><a href="http://www.statmethods.net/graphs/index.html">Basic Graphs</a></li>
+			        <li><a href="http://www.statmethods.net/advgraphs/index.html">Advanced Graphs</a></li>
+			        <li><a href="http://statmethods.wordpress.com/">Blog</a></li>
+                </ul>
+
+            </div><!-- sidebar -->
+            <div id="content">
+ <h1>Principal Components and Factor Analysis   </h1>
+
+ 				<p>This section covers principal components  and factor analysis. The later includes both exploratory and confirmatory methods.</p>
+ 				<h2>Principal Components</h2>
+ 				<p>The <strong>princomp( )</strong> function produces an unrotated principal component analysis. </p>
+ 		  <p><code># Pricipal Components Analysis<br>
+   # entering raw data and extracting PCs <br>
+   #
+   from the correlation matrix
+   <br>
+ 				  fit &lt;- princomp(mydata, cor=TRUE)<br>
+ 				  summary(fit) # print variance accounted for <br>
+ 				  loadings(fit) # pc loadings <br>
+ 				  plot(fit,type="lines") # scree plot <br>
+ 				  fit$scores # the principal components<br>
+ 				  biplot(fit)
+ </code></p>
+ <p><a href="http://www.statmethods.net/advstats/images/screeplot.jpg"><img src="Quick-R:%20Factor%20Analysis_archivos/smscreeplot.jpg" alt="scree plot" height="103" width="103"></a> <a href="http://www.statmethods.net/advstats/images/biplot.jpg"><img src="Quick-R:%20Factor%20Analysis_archivos/smbiplot.jpg" alt="biplot" height="103" width="103"></a> click to view </p>
+ <p>Use <strong>cor=FALSE</strong> to base the principal components on the covariance matrix. Use the <strong>covmat=</strong> option to enter a correlation or covariance matrix directly. If entering a covariance matrix, include the option<strong> n.obs=.</strong></p>
+ <p>The <strong>principal( )</strong> function in the <a href="http://cran.r-project.org/web/packages/psych/index.html"><strong>psych</strong></a> package can be used to extract and rotate principal components. </p>
+ <p><code># Varimax Rotated Principal Components<br>
+   # retaining 5 components <br>
+   library(psych)<br>
+   fit &lt;- principal(mydata, nfactors=5, rotate="varimax")<br>
+   fit # print results
+ </code></p>
+ <p><em>mydata</em> can be a raw data matrix or a covariance matrix. Pairwise deletion of missing data is used. <strong>rotate </strong>can "none", "varimax", "quatimax", "promax", "oblimin", "simplimax", or "cluster"  . </p>
+ <h2>Exploratory Factor Analysis</h2>
+ <p>The <strong>factanal( )</strong> function produces maximum likelihood factor analysis. </p>
+ <p><code># Maximum Likelihood Factor Analysis<br>
+   # entering raw data and extracting 3 factors, <br>
+   #
+   with varimax rotation
+   <br>
+ fit &lt;- factanal(mydata, 3, rotation="varimax")<br>
+ print(fit, digits=2, cutoff=.3, sort=TRUE)<br>
+ # plot factor 1 by factor 2 <br>
+ load &lt;- fit$loadings[,1:2] <br>
+         plot(load,type="n")                                 # set up plot <br>
+         text(load,labels=names(mydata),cex=.7)           # add variable names </code></p>
+ <p><a href="http://www.statmethods.net/advstats/images/efa.jpg"><img src="Quick-R:%20Factor%20Analysis_archivos/smefa.jpg" alt="exploratory factor analysis" height="103" width="103"></a> click to view </p>
+ <p>The <strong>rotation=</strong> options include "varimax", "promax", and "none". Add the option <strong>scores=</strong>"regression" or "Bartlett" to produce factor scores.  Use the <strong>covmat=</strong> option to enter a correlation or covariance matrix directly. If entering a covariance matrix, include the option<strong> n.obs=.</strong></p>
+ <p>The <strong> factor.pa( ) function in the <a href="http://cran.r-project.org/web/packages/psych/index.html">psych</a> </strong>package offers a number of factor analysis related functions, including principal axis factoring. </p>
+ <p><code># Principal Axis Factor Analysis<br>
+   library(psych)<br>
+   fit &lt;- factor.pa(mydata, nfactors=3, rotation="varimax")<br>
+   fit # print results
+ </code></p>
+ <p><em>mydata</em> can be a raw data matrix or a covariance matrix. 
+Pairwise deletion of missing data is used. Rotation can be "varimax" or 
+"promax". </p>
+
+ <h3>Determining the Number of Factors to Extract</h3>
+ <p>A crucial decision in exploratory factor analysis is how many factors to extract. The<a href="http://cran.r-project.org/web/packages/nFactors/index.html"> <strong>nFactors</strong></a> package offer a suite of functions to aid in this decision. Details on this methodology can be found in a <a href="http://www.er.uqam.ca/nobel/r17165/RECHERCHE/COMMUNICATIONS/2006/IMPS/IMPS_2006.ppt#1">PowerPoint presentation</a> by Raiche, Riopel, and Blais. Of course, any factor solution must be interpretable to be useful. </p>
+ <p><code># Determine Number of Factors to Extract<br>
+   library(nFactors)<br>
+   ev &lt;- eigen(cor(mydata)) # get eigenvalues<br>
+   ap &lt;- parallel(subject=nrow(mydata),var=ncol(mydata),<br>
+ &nbsp;&nbsp;rep=100,cent=.05)<br>
+ nS &lt;- nScree(x=ev$values, aparallel=ap$eigen$qevpea)<br>
+ plotnScree(nS)
+ </code></p>
+ <p><a href="http://www.statmethods.net/advstats/images/nsScree.jpg"><img src="Quick-R:%20Factor%20Analysis_archivos/smnsScree.jpg" alt="number of factors" height="103" width="103"></a> click to view </p>
+
+ <h3>Going Further </h3>
+ <p>The<a href="http://cran.r-project.org/web/packages/FactoMineR/index.html"> <strong>FactoMineR</strong></a><strong> </strong>package
+  offers a large number of additional functions for exploratory factor 
+analysis. This includes the use of both quantitative and qualitative 
+variables, as well as the inclusion of supplimentary variables and 
+observations. Here is an example of the types of graphs that you can 
+create with this package.</p>
+ <p><code># PCA Variable Factor Map <br>
+   library(FactoMineR)<br>
+   result &lt;- PCA(mydata) # graphs generated automatically
+ </code></p>
+ <p><a href="http://www.statmethods.net/advstats/images/factominer1.png"><img src="Quick-R:%20Factor%20Analysis_archivos/smfactominer1.jpg" alt="factominer1" height="113" width="113"></a> <a href="http://www.statmethods.net/advstats/images/factominer2.png"><img src="Quick-R:%20Factor%20Analysis_archivos/smfactominer2.jpg" alt="factominer2" height="100" width="149"></a> click to view </p>
+ <p>Thye <strong><a href="http://cran.r-project.org/web/packages/GPArotation/index.html">GPARotation</a></strong> package offers a wealth of rotation options beyond varimax and promax.</p>
+ <h2>Structual Equation Modeling </h2>
+ <p><strong>Confirmatory Factor Analysis</strong> <strong>(CFA)</strong> is a subset of the much wider <strong>Structural Equation Modeling</strong> <strong>(SEM) </strong>methodology. SEM is provided in <strong>R</strong> via the <strong><a href="http://cran.r-project.org/web/packages/sem/index.html">sem</a></strong> package. Models are entered via RAM specification (similar to PROC CALIS in SAS). While <strong>sem</strong> is a comprehensive package, my recommendation is that if you are doing significant SEM work, you spring for a copy of <strong><a href="http://www.spss.com/amos/">AMOS</a></strong>.
+ It can be much more user-friendly and creates  more attractive and 
+publication ready output. Having said that, here is a CFA example using <strong>sem</strong>.</p>
+ <p><img src="Quick-R:%20Factor%20Analysis_archivos/sem.gif" alt="CFA Model" class="float-left" height="227" width="207">Assume
+ that we have six observered variables (X1, X2, ..., X6). We hypothesize
+ that there are two unobserved latent factors (F1, F2) that underly the 
+observed variables as described in this diagram. X1, X2, and X3 load on 
+F1 (with loadings lam1, lam2, and lam3). X4, X5, and X6 load on F2 (with
+ loadings lam4, lam5, and lam6). The double headed arrow indicates the 
+covariance between the two latent factors (F1F2). e1 thru e6 represent 
+the residual variances (variance in the observed variables not accounted
+ for by the two latent factors). We set the variances of F1 and F2 equal
+ to one so that the parameters will have a scale. This will result in 
+F1F2 representing the correlation between the two latent factors. </p>
+ <p>For <strong>sem</strong>, we need the covariance matrix of the observed variables - thus the <strong>cov( )</strong> statement in the code below. The CFA model is specified using the <strong>specify.model( ) </strong>function. The format is <em>arrow specification</em>, <em>parameter name</em>, <em>start value</em>.
+ Choosing a start value of NA tells the program to choose a start value 
+rather than supplying one yourself. Note that the variance of F1 and F2 
+are fixed at 1 (NA in the second column). The blank line  is required to
+ end the RAM specification. </p>
+ <p><code># Simple CFA Model<br>
+ library(sem)<br>
+ mydata.cov &lt;- cov(mydata)<br>
+ model.mydata &lt;-  specify.model() <br>
+ F1 -&gt; &nbsp;X1, lam1, NA<br>
+ F1 -&gt; &nbsp;X2, lam2, NA <br>
+ F1 -&gt; &nbsp;X3, lam3, NA <br>
+ F2 -&gt; &nbsp;X4, lam4, NA <br>
+ F2 -&gt; &nbsp;X5, lam5, NA <br>
+ F2 -&gt; &nbsp;X6, lam6, NA <br>
+ X1 &lt;-&gt; X1, e1, &nbsp;&nbsp;NA <br>
+ X2 &lt;-&gt; X2, e2, &nbsp;&nbsp;NA <br>
+ X3 &lt;-&gt; X3, e3, &nbsp;&nbsp;NA <br>
+ X4 &lt;-&gt; X4, e4, &nbsp;&nbsp;NA <br>
+ X5 &lt;-&gt; X5, e5, &nbsp;&nbsp;NA <br>
+ X6 &lt;-&gt; X6, e6, &nbsp;&nbsp;NA <br>
+ F1 &lt;-&gt; F1,  NA, &nbsp;&nbsp;&nbsp;1 <br>
+ F2 &lt;-&gt; F2,  NA, &nbsp;&nbsp;&nbsp;1 <br>
+ F1 &lt;-&gt; F2, F1F2, NA<br>
+ <br>
+ mydata.sem &lt;- sem(model.mydata, mydata.cov, nrow(mydata))<br>
+ # print results (fit indices, paramters, hypothesis tests) <br>
+ summary(mydata.sem)<br>
+ # print standardized coefficients (loadings)
+ <br>
+ std.coef(mydata.sem)
+ </code></p>
+ <p>You can use the <strong>boot.sem( ) </strong>function to bootstrap the structual equation model. See <strong>help(boot.sem)</strong> for details. Additionally, the function <strong>mod.indices(</strong> <strong>)</strong>
+ will produce modification indices. Using modification indices to  
+improve model fit by respecifying the parameters  moves you from a 
+confirmatory to an exploratory analysis. </p>
+<p>For more information on <strong>sem</strong>, see <a href="http://socserv.mcmaster.ca/jfox/Misc/sem/SEM-paper.pdf">Structural Equation Modeling with the sem Package in R</a>, by John Fox. </p>
+            </div><!-- content -->
+            <div class="clearing">&nbsp;</div>
+    </div></div><!-- main --><!-- main2 -->
+    <div id="footer">
+        <p>Copyright © 2014 <strong><a href="http://www.statmethods.net/about/author.html">Robert I. Kabacoff, Ph.D.</a></strong> | <a href="http://www.statmethods.net/about/sitemap.html">Sitemap</a><br>Designed by <a href="http://www.webtemplateocean.com/">WebTemplateOcean.com</a></p>
+    </div>
+
+
+</body></html>
