@@ -1,7 +1,7 @@
 
-#' --
-#' title: Principal Component Analysis of 6 vertical temperature sensors
-#' author: Ana Laura Diedrichs
+#' ---
+#' title: "Principal Component Analysis of 6 vertical temperature sensors"
+#' author: "Ana Laura Diedrichs"
 #' date: "May 3rd, 2014"
 #' output: pdf_document
 #' ---
