@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Quick-R: Time Series</title>
+    <meta name="Description" content="Time Series Methods" />
+    <meta name="Keywords" content="R, Tutorial, Statistics" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="Distribution" content="Global" />
+    <meta name="Author" content="Robert Kabacoff - robk@statmethods.net" />
+    <meta name="Robots" content="index,follow" />
+    <meta name="verify-v1" content="mRsSDOT/ebuSJJB2GXuo1UZi3nZ+NsE+JIBwg77QtNE=" />
+    <META name="y_key" content="c94970a1faf084da" >
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <a href="http://www.statmethods.net"><img id="logo" src="../images/logo.gif" alt="" /></a>
+        <div id="menu">
+            <ul>
+		        <li><a href="../index.html">Home</a></li>
+		        <li>|<a href="../interface/index.html">Interface</a></li>
+		        <li>|<a href="../input/index.html">Input</a></li>
+		        <li>|<a href="../management/index.html">Manage</a></li>
+		        <li>|<a href="../stats/index.html">Stats</a></li>
+			    <li>|<a href="../advstats/index.html">Adv Stats</a></li>
+			    <li>|<a href="../graphs/index.html">Graphs</a></li>
+			    <li>|<a href="../advgraphs/index.html">Adv Graphs</a></li>
+			     <li>|<a href="http://statmethods.wordpress.com">Blog</a></li>
+            </ul>
+   </div>
+        <h1><a href="http://www.statmethods.net">Quick-R</a></h1>
+        <p id="subtitle">accessing the power of R </p>
+<form id="search" action="http://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_self">
+            <input type="hidden" name="si" value="23055275"/>
+			<input type="hidden" name="pid" value="r"/>
+		    <input type="hidden" name="n" value="0"/>
+			<input type="hidden" name="_charset_" value=""/>
+			<input type="hidden" name="bcd" value="&#247;"/>
+			<input type="hidden" name="nsb" />
+			<input type="hidden" name="css" value="">
+			<input class="text" type="text" name="query"/>
+			<input name="search" class="submit" value="Search" type="submit" />
+        </form>
+</div><!-- header -->
+    <div id="main"><div id="main2">
+            <div id="sidebar">
+                <h2>Advanced Statistics</h2>
+                <ul>
+                    <li><a href="glm.html">Generalized Linear Models </a></li>
+					<li><a href="discriminant.html">Discriminant Function </a></li>
+					<li><a href="timeseries.html">Time Series </a></li>
+					<li><a href="factor.html">Factor Analysis </a></li>
+					<li><a href="ca.html">Correspondence Analysis </a></li>
+					<li><a href="mds.html">Multidimensional Scaling </a></li>
+					<li><a href="cluster.html">Cluster Analysis   </a></li>
+					<li><a href="cart.html">Tree-Based Models </a></li>
+					<li><a href="bootstrapping.html">Bootstrapping  </a></li>
+				    <li><a href="matrix.html">Matrix Algebra </a></li>
+
+            </ul>
+                    <h2>R in Action</h2>
+               <div class="box">
+                    <p><a href="http://www.manning.com/kabacoff2/?a_aid=RiA2ed&a_bid=5c2b1e1d"><img src="http://www.statmethods.net/images/kabacoff_cover150.jpg" alt="R in Action" width="73" height="90" class="float-left"  /></a></p>
+                    <p><a href="http://www.manning.com/kabacoff2/?a_aid=RiA2ed&a_bid=5c2b1e1d" target="_blank">R in Action</A> (2nd ed) significantly expands upon this material.
+					Use promo code <strong>ria38</strong> for a 38% discount.</p>
+
+                </div>
+                <h2>Top Menu</h2>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../interface/index.html">The R Interface</a></li>
+                    <li><a href="../input/index.html">Data Input</a></li>
+                    <li><a href="../management/index.html">Data Management</a></li>
+                    <li><a href="../stats/index.html">Basic Statistics</a></li>
+				    <li><a href="../advstats/index.html">Advanced Statistics</a></li>
+			        <li><a href="../graphs/index.html">Basic Graphs</a></li>
+			        <li><a href="../advgraphs/index.html">Advanced Graphs</a></li>
+			        <li><a href="http://statmethods.wordpress.com">Blog</a></li>
+                </ul>
+
+            </div><!-- sidebar -->
+            <div id="content">
+ <h1>Time Series and Forecasting</h1>
+
+ 				<p><strong>R</strong> has <a href="http://cran.r-project.org/web/views/TimeSeries.html">extensive facilities</a> for analyzing time series data. This section describes the creation of a time series, seasonal decompostion, modeling with exponential and ARIMA models, and forecasting with the <a href="http://cran.r-project.org/web/packages/forecast/index.html"><strong>forecast</strong></a> package.</p>
+
+<h2>Creating a time series</h2>
+<p>The <strong>ts()</strong> function will convert a numeric vector into an R time series object. The format is <strong>ts(</strong><em>vector</em>,<strong> start=, end=, frequency=)</strong> where start and end are the times of the first and last observation and frequency is the number of observations per unit time (1=annual, 4=quartly, 12=monthly, etc.).
+<p><code># save a numeric vector containing 48 monthly observations</br>
+# from Jan 2009 to Dec 2014 as a time series object</br>
+myts &lt;- ts(myvector, start=c(2009, 1), end=c(2014, 12), frequency=12)
+</br></br>
+# subset the time series (June 2014 to December 2014)</br>
+myts2 &lt;- window(myts, start=c(2014, 6), end=c(2014, 12))
+</br></br>
+# plot series</br>
+plot(myts)</code></p>
+<h2>Seasonal Decomposition</h2>
+<p>A time series with additive trend, seasonal, and irregular components can be decomposed using the <strong>stl()</strong> function. Note that a series with multiplicative effects can often by transformed into series with additive effects through a log transformation (i.e., <em>newts</em> &lt;- <stronng>log(</strong><em>myts</em><strong>)</strong>).<p>
+<code>
+# Seasonal decomposition</br>
+fit &lt;- stl(myts, s.window="period")</br>
+plot(fit)</br>
+</br>
+# additional plots</br>
+monthplot(myts)</br>
+library(forecast)</br>
+seasonplot(myts)
+</code>
+<h2>Exponential Models</h2>
+<p>Both the <strong>HoltWinters()</strong> function in the base installation, and the <strong>ets()</strong> function in the forecast package, can be used to fit exponential models.</p>
+<code>
+# simple exponential - models level</br>
+fit &lt;- HoltWinters(myts, beta=FALSE, gamma=FALSE)</br>
+# double exponential - models level and trend</br>
+fit &lt;- HoltWinters(myts, gamma=FALSE)</br>
+# triple exponential - models level, trend, and seasonal components</br>
+fit &lt;- HoltWinters(myts)</br></br>
+# predictive accuracy</br>
+library(forecast)</br>
+accuracy(fit)</br></br>
+# predict next three future values</br>
+library(forecast)</br>
+forecast(fit, 3)</br>
+plot(forecast(fit, 3))
+</code>
+<h2>ARIMA Models</h2>
+<p>The <strong>arima()</strong> function can be used to fit an autoregressive integrated moving averages model. Other useful functions include:</p>
+<p>
+ 				<table width="85%">
+ 				<tr>
+ 				<td>
+ 				<strong>lag(</strong><em>ts</em>, <em>k</em><strong>)</strong></td>
+ 				<td>lagged version of time series, shifted back <em>k</em> observations</td>
+ 				</tr>
+ 				<tr>
+ 				  <td><strong>diff(</strong><em>ts</em>, <strong>differences=</strong><em>d</em><strong>)</strong></td>
+ 				  <td>difference the time series <em>d</em> times</td>
+ 				  </tr>
+ 				<tr>
+				<tr>
+ 				  <td><strong>ndiffs(</strong><em>ts</em><strong>)</strong></td>
+ 				  <td>Number of differences required to achieve stationarity (from the <a href="http://cran.r-project.org/web/packages/forecast/index.html"><strong>forecast</strong></a> package)</td>
+ 				  </tr>
+ 				<tr>
+				<tr>
+ 				  <td><strong>acf(</strong><em>ts</em><strong>)</strong></td>
+ 				  <td>autocorrelation function</td>
+ 				  </tr>
+ 				<tr>
+				<tr>
+ 				  <td><strong>pacf(</strong><em>ts</em><strong>)</strong></td>
+ 				  <td>partial autocorrelation function</td>
+ 				  </tr>
+ 				<tr>
+				<tr>
+ 				  <td><strong>adf.test(</strong><em>ts</em><strong>)</strong></td>
+ 				  <td>Augemented Dickey-Fuller test. Rejecting the null hypothesis suggests that a time series is stationary (from the <a href="http://cran.r-project.org/web/packages/tseries/index.html"><strong>tseries</strong></a> package)</td>
+ 				  </tr>
+ 				<tr>
+ 				  <td><strong>Box.test(</strong><em>x</em>, <strong>type="Ljung-Box")</strong></td>
+ 				  <td>Pormanteau test that observations in vector or time series <em>x</em> are independent</td>
+ 				  </tr>
+ 				<tr>
+ 				</table></p>
+<p>Note that the <a href="http://cran.r-project.org/web/packages/forecast/index.html"><strong>forecast</strong></a> package has somewhat nicer versions of <stong>acf()</strong> and <strong>pacf()</strong> called <strong>Acf()</strong> and <strong>Pacf()</strong> respectively.</p>
+<code>
+# fit an ARIMA model of order P, D, Q</br>
+fit &lt;- arima(myts, order=c(p, d, q)</br></br>
+
+# predictive accuracy</br>
+library(forecast)</br>
+accuracy(fit)</br></br>
+
+# predict next 5 observations</br>
+library(forecast)</br>
+forecast(fit, 5)</br>
+plot(forecast(fit, 5))
+</code>
+
+<h2>Automated Forecasting</h2>
+<p>The <a href="http://cran.r-project.org/web/packages/forecast/index.html"><strong>forecast</strong></a> package provides functions for the automatic selection of exponential and ARIMA models. The <strong>ets()</strong> function supports both additive and multiplicative models. The <strong>auto.arima()</strong> function can handle both seasonal and nonseasonal ARIMA models. Models are chosen to maximize one of several fit criteria.</p>
+<code>
+library(forecast)</br>
+# Automated forecasting using an exponential model</br>
+fit &lt;- ets(myts)</br></br>
+# Automated forecasting using an ARIMA model</br>
+fit &lt;- auto.arima(myts)
+</code>
+<h2>Going Further</h2>
+<p>
+There are many good online resources for learning time series analysis with R. These include <a href="http://a-little-book-of-r-for-time-series.readthedocs.org/en/latest/">A little book of R for time series</a> by Avril Chohlan, and <a href="http://otexts.com/fpp">Forecasting: principles and practice</a> by Rob Hyndman and George Athanasopoulos. Vito Ricci has created a time series <a href="http://cran.r-project.org/doc/contrib/Ricci-refcard-ts.pdf">reference card</a>. There are also a time series tutorial by <a href="http://www.statoek.wiso.uni-goettingen.de/veranstaltungen/zeitreihen/sommer03/ts_r_intro.pdf">Walter Zucchini, Oleg Nenadic</a> that is quite useful.</p>
+				<p>See also the  comprehensive book <a href="http://www.stat.pitt.edu/stoffer/tsa3/">Time Series Analysis and its Applications with R Examples</a> by Robert Shunway and David Stoffer. </p>
+            </div><!-- content -->
+            <div class="clearing">&nbsp;</div>
+    </div></div><!-- main --><!-- main2 -->
+    <div id="footer">
+        <p>Copyright &copy; 2014 <strong><a href="../about/author.html">Robert I. Kabacoff, Ph.D.</a></strong> | <a href="../about/sitemap.html">Sitemap</a></br>Designed by <a href="http://www.webtemplateocean.com/">WebTemplateOcean.com</a></p>
+    </div>
+</body>
+</html>
