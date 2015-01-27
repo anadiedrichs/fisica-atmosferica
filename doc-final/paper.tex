@@ -65,8 +65,9 @@
 % their surnames. This ensures that the names appear correctly in
 % the running heads and the author index.
 %
-\author{Ana Laura Diedrichs%
-\and Facundo Bromberg}
+\author{Ana Laura Diedrichs
+%\and Facundo Bromberg
+}
 %
 \authorrunning{}
 
@@ -83,13 +84,6 @@ Rodríguez 273, Ciudad de Mendoza, Argentina, 5500\\
 \url{http://dharma.frm.utn.edu.ar}
 }
 
-%
-% NB: a more complex sample for affiliations and the mapping to the
-% corresponding authors can be found in the file "llncs.dem"
-% (search for the string "\mainmatter" where a contribution starts).
-% "llncs.dem" accompanies the document class "llncs.cls".
-%
-
 \toctitle{Lecture Notes in Computer Science}
 \tocauthor{Authors' Instructions}
 \maketitle
@@ -102,16 +96,27 @@ Rodríguez 273, Ciudad de Mendoza, Argentina, 5500\\
 
 \begin{abstract}
 
-Quien escribe en primera persona, Ana Diedrichs, en este documento desplegar\'{a}
-informaci\'{o}n importante sobre la investigaci\'{o}n que lleva en curso. Este 
-apunte es una recolecci\'{o}n de notas de investigaci\'{o}n. Con el objetivo a largo 
-plazo de mejorar la predicci\'{o}n de heladas y realizar una contribuci\'{o}n, este documento
-trata el an\'{a}lisis de las relaciones de variables clim\'{a}ticas, como la temperatura, a 
-microescala, de sensores ubicados en posición vertical. 
-Para ello se analiza las relaciones entre los sensores usando el enfoque 
-de independencia probabilística. Si no existe independencia condicional entre 2 variables 
-dada una tercera, estas dos variables estaría fuertemente correlacionadas entre sí.
-Basándonos en esta intuición, realizaremos una serie de experimentos y análisis. 
+Las heladas son un evento meteorológico que ocasiona grandes pérdidas a la producción.
+Se caracterizan por descenso de la temperatura a niveles que pueden dañar los cultivos.
+La topografía del terreno es un factor importante que ocasiona que el fenómeno no 
+afecte de la misma manera a toda la finca. Dado que el aire frío es más denso, 
+el mismo se estratifica a las zonas más bajas. Por ello es importante evaluar la 
+variación vertical de las temperaturas.
+En el presente trabajo realizaremos el análisis de seis sensores posicionados verticalmente
+para evaluar la variación de temperaturas en época de heladas.
+Los resultados nos muestran que existen correlaciones entre los sensores vecinos y
+ es posible predecir el comportamiento de uno a partir del otro.
+%%
+%%Quien escribe en primera persona, Ana Diedrichs, en este documento desplegar\'{a}
+%%informaci\'{o}n importante sobre la investigaci\'{o}n que lleva en curso. Este 
+%%apunte es una recolecci\'{o}n de notas de investigaci\'{o}n. Con el objetivo a largo 
+%%plazo de mejorar la predicci\'{o}n de heladas y realizar una contribuci\'{o}n, este documento
+%%trata el an\'{a}lisis de las relaciones de variables clim\'{a}ticas, como la temperatura, a 
+%%microescala, de sensores ubicados en posición vertical. 
+%%Para ello se analiza las relaciones entre los sensores usando el enfoque 
+%%de independencia probabilística. Si no existe independencia condicional entre 2 variables 
+%%dada una tercera, estas dos variables estaría fuertemente correlacionadas entre sí.
+%%Basándonos en esta intuición, realizaremos una serie de experimentos y análisis. 
 
 \end{abstract}
 
@@ -119,33 +124,47 @@ Basándonos en esta intuición, realizaremos una serie de experimentos y anális
 
 \section{Introducci\'{o}n a la problem\'{a}tica de las heladas}
 
+El daño ocasionado por heladas toma lugar cuando las temperaturas 
+se encuentran bajo un límite tolerable por las plantas, ya que las 
+mismas presentan distinto grado de resistencia al frío según el estado
+fenológico en el que se encuentren \cite{snyder2005frost}; por lo
+que la temperatura de daño es variable. Los eventos de heladas son 
+muy dañinos afectando a grandes superficies. Mendoza no es una excepción.
+De acuerdo al Instituto Nacional de Vitivinicultura (INV), 
+en 2013 la pérdida de viñedo alcanzó un 27\%\cite{inv-news}, ocurriendo 
+gran parte de la pérdida durante la primavera temprana.
+Con el objeto de estudiar el fenómeno microclimático de las heladas,
+los sensores de temperatura deben ser distribuidos verticalmente y horizontalmente
+porque la temperatura del aire varía en ambas direcciones y la planta tiene
+diferentes umbrales de resistencia al frío en sus órganos (tronco, flores, yemas)
 
-The damage caused by the frost takes place when the temperatures are below 
-than a tolerable limit for the plants. Each phenological state, e.g flowering, 
-has a variable cold hardiness\cite{snyder2005frost}, so the lethal temperature 
-is also variable. Freezing climatic events are the most dangerous, because 
-they affect a large land surface. Mendoza is not an exception. According to 
-the Instituto Nacional de Vitivinicultura (INV), in 2013 the loss of the 
-vine crop reached up to 27\%\cite{inv-news}. Big part of that loss of yield 
-was during the early spring. In order to study the micro-climate phenomenon 
-of frost in Mendoza, sensors should be distributed in the vineyards vertically 
-as well horizontally, because the air temperatures change  in both directions,  
-and the plant has also different cold hardiness in the organs like trunk, flowers, shoots.
 
- 
-Previous works on frost prediction have worked with data taken from meteorological 
-stations very distant between them  \cite{lin2007agroforestry}\cite{ghielmi2006descriptive}
-\cite{maqsood2004ensemble} or using wireless sensor networks (WSN) \cite{sallis2009frost2}. 
-All of them have used  supervised machine learning algorithms, such as artificial neural 
-networks and support vector machines, with an particular configuration. For a better 
-understanding of the phenomenon, we propose a study the sensor relationships in order
- to improve the frost prediction.
+%The damage caused by the frost takes place when the temperatures are below 
+%than a tolerable limit for the plants. Each phenological state, e.g flowering, 
+%has a variable cold hardiness\cite{snyder2005frost}, so the lethal temperature 
+%is also variable. Freezing climatic events are the most dangerous, because 
+%they affect a large land surface. Mendoza is not an exception. According to 
+%the Instituto Nacional de Vitivinicultura (INV), in 2013 the loss of the 
+%vine crop reached up to 27\%\cite{inv-news}. Big part of that loss of yield 
+%was during the early spring. In order to study the micro-climate phenomenon 
+%of frost in Mendoza, sensors should be distributed in the vineyards vertically 
+%as well horizontally, because the air temperatures change  in both directions,  
+%and the plant has also different cold hardiness in the organs like trunk, flowers, shoots.
 
-We are exploring the variables relationships using the independence approach by 
-learning Markov Network structures \cite{koller2009probabilistic} from the environmental 
-data corroborating with the opinion of an expert. The analysis of the Markov blanket 
-of particular sensors helps to identify which neighbor sensors could improve the 
-prediction. 
+% 
+%Previous works on frost prediction have worked with data taken from meteorological 
+%stations very distant between them  \cite{lin2007agroforestry}\cite{ghielmi2006descriptive}
+%\cite{maqsood2004ensemble} or using wireless sensor networks (WSN) \cite{sallis2009frost2}. 
+%All of them have used  supervised machine learning algorithms, such as artificial neural 
+%networks and support vector machines, with an particular configuration. For a better 
+%understanding of the phenomenon, we propose a study the sensor relationships in order
+% to improve the frost prediction.
+%
+%We are exploring the variables relationships using the independence approach by 
+%learning Markov Network structures \cite{koller2009probabilistic} from the environmental 
+%data corroborating with the opinion of an expert. The analysis of the Markov blanket 
+%of particular sensors helps to identify which neighbor sensors could improve the 
+%prediction. 
 
 %For a better understanding of the phenomenon, 
 %we propose study the sensor relationships in order to improve the frost prediction.
