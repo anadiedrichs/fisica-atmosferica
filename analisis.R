@@ -44,7 +44,7 @@ ts<- xts(x=data.table[,2:7],order.by=t)
 my.color<- c("blue","red","yellow","green","orange","cyan")
 
 plot(as.zoo(ts), plot.type="s", col=my.color, lty=1,lwd=2,ylab="temperatures")
-legend(x="topleft", legend=names.col, col=my.color,lty=1:6) 
+legend(x="topleft", legend=names.col[2:7], col=my.color,lty=1:6) 
 #TODO verificar que la leyenda del gráfico corresponda con las variables
 
 
@@ -52,7 +52,7 @@ legend(x="topleft", legend=names.col, col=my.color,lty=1:6)
 #' A continuación graficamos la serie temporal de los sensores por separado para mayor claridad
 #' 
 
- require(graphics)
+require(graphics)
 library(timeSeries)
 par(mfrow=c(1, 1))
 #línea que marca el CERO
@@ -60,7 +60,7 @@ lines2 <- function(X, Y, type, xlab, ylab, col, pch, lty, lwd, cex) {
   lines(x=X, y=Y, col=col)
   abline(h=0, col = "brown", lwd=2)
 }
-plot(as.zoo(ts), plot.type="m", col = .colorwheelPalette(3),panel=lines2)
+plot(as.zoo(ts), plot.type="m", col = .colorwheelPalette(3),panel=lines2,main="temperaturas",xlab="")
 #' 
 #' Gráfico de cajas para tener un vistazo de los datos
 #' 
