@@ -1,8 +1,10 @@
 #' ---
-#' title: "Modelo de balance calórico de helada radiativa"
+#' title: "Difusión del calor en noches de helada"
 #' author: "Ana Laura Diedrichs"
-#' date: "febrero, 2015"
-#' output: pdf_document
+#' date: "junio, 2015"
+#' ---
+#' 
+#' Introducción
 #' ---
 #' 
 #' 
@@ -19,11 +21,14 @@
 #'el día gracias al sol. El flujo por conducción en el suelo ($Q_G$) es el flujo de energía desde el subsuelo a la superficie
 #'(positivo) y viceversa (negativo). Este flujo de calor por conducción del suelo se puede cuantificar
 #'usando la ley de Fourier, que indica que el calor $Q_G$ es proporcional al gradiente de temperatura
-#'(primera ley de conducción del calor): $$Q_G=-k* Area * \nabla T $$. La constante $k$ es la conductividad térmica del suelo.
+#'(primera ley de conducción del calor): 
+#'
+#'$$Q_G=-k* Area * \nabla T $$. 
+#'
+#'La constante $k$ es la conductividad térmica del suelo.
 #'El gradiente de temperatura que representa el flujo de calor entre suelo y ambiente se caracteriza como la siguiente fórmula 
 #'$\nabla T =\frac{dT}{dt}=\frac{dT}{dx}+\frac{dT}{dy}$. Dada la presencia de derivadas parciales, la misma se resolverá 
 #'mediante diferencias finitas y considerando dimensiones 2D para simplificar el problema.
-#'
 #'
 #'
 #'El flujo de calor sensible $SH$ está asociado a la diferencia de temperatura que existe entre la temperatura
@@ -69,8 +74,11 @@
 #'
 #' * La capacidad térmica y emisividad del suelo no variará con el tiempo.
 #' * Se considera una superficie delgada en la interface suelo - atmósfera de manera que no tenga
-#' masa ni capacidad calorífica, de manera que los flujos que entran y salen de calor de esta superficie se 
+#' masa ni capacidad calorífica, para que los flujos que entran y salen de calor de esta superficie se 
 #' compensen según la ley de conservación de energía.
+#' 
+#' Queda por considerar lo siguiente: 
+#' 
 #' * la temperatura del suelo variará linealmente con el tiempo
 #' * se simularán 100 unidades de tiempo
 #' * Viento y humedad serán constantes en el tiempo.
@@ -79,57 +87,161 @@
 #' 
 #' OBJETIVOS DEL MODELO 
 #' 
-#' Evaluar la evolución temporal de $Q_G, SH, LH, Q^*$ y $S_C$ ante la variación de temperatura del aire
-#' y el suelo en diferentes casos (por ejemplo distintos tipos de suelo, distintas variaciones de temperatura)
-
-#library(deSolve)
-
-parameters <- c(e=0.7) # <--- e emisividad, k constante termica, h humedad
-state <- c(P_t = 10) # <--- población inicial de 10 personas
-times <- seq(0, 10, by = 1) # <--- simulamos tan sólo 10 tiempos
-
-BalanceCalorico<-function(t, state, parameters) {
-  with(as.list(c(state, parameters)),{
-    # rate of change
-    P_t1 = k * P_t
-    
-    list(c(P_t1))
-  }) # end with(as.list ...
-}
+#' Evaluar la variación de la temperatura del suelo de acuerdo a la difusión del calor desde el subsuelo al suelo,
+#' presentado como: $Q_G=-k* Area * \nabla T $. Para empezar a codificar y simular el comportamiento, utilizamos la 
+#' librería ReacTran [1]
 #'
-#' Código extraído del pdf titulado como
-#' Soetaert, K., Meysman, F., & Petzoldt, T. (2010). 
-#' Solving differential equations in R. AIP Conference Proceedings, 1281(December),
-#'  31–34. doi:10.1063/1.3498463
+#'  
 library(ReacTran)
-Grid <- setup.grid.1D(N=1000,L=10)
+
+#' GRILLA DE DISCRETIZACION 2D
+#' 
+x.grid  <- setup.grid.1D(x.up = 0, L = 10, N = 100)
+y.grid  <- setup.grid.1D(x.up = 0, L = 10, N = 100)
+grid2D <- setup.grid.2D(x.grid, y.grid)
+
+#' imprimimos los valores que guarda la variable grid2D seteados por defecto
+#print(grid2D)
+
+#' Vamos a simular la propagación del calor desde el subsuelo al suelo basados en la siguiente fórmula:
+#' $$Q_G=-k* Area * \nabla T$$
+#' Utilizo una grilla unidimensional de propagación de calor
+#' 
+#' Constante de difusión calórica dependiente del material para suelo arenoso húmedo
+k <- 0.017
+#' área de la hsuperficie
+area <- 1* Grid$N
+D <- k * area # k * Area
+#' ¿Qué sería Q en mi problema?
+Q <- 1
+Cext <- 1
+C.upp <- 0.001
+
+Grid <- setup.grid.1D(x.down=2,x.up=-1,N=1000,L=10)
 
 pde1D <-function(t, C, parms) {
   tran <- tran.1D(C = C, D = D,
-                  C.down = Cext, dx = Grid)$dC
-  list(tran - Q) # return value: rate of change
+                  C.up = Cext,
+                  #C.up = Cext,
+                  dx = Grid)$dC
+  list(tran-Q) # return value: rate of change
 }
-
-D<-1
-Q<-1
-Cext<-20
 
 library(rootSolve)
 
-print(system.time(
-  std<-steady.1D(y = runif(Grid$N),
+std<-steady.1D(y =rep(0,Grid$N),
                  func = pde1D, parms = NULL, nspec = 1)
-))
 
-plot (Grid$x.mid, std$y, type = "l", lwd = 2, main = "steady-state PDE", xlab = "x", ylab = "C", col = "red")
 
+plot(Grid$x.mid, std$y, type = "l", lwd = 2, 
+     main = "steady-state PDE", xlab = "x", ylab = "T", col = "red")
+
+#' Cargamos a memoria la librería que resuelve ecuaciones diferenciales.
 require(deSolve)
-times <- seq(0, 100, by = 1)
-system.time(
-  out <- ode.1D(y = rep(1, Grid$N),
+
+#' Simulamos 12 horas (720 minutos) simulamos
+
+times <- seq(0, 720, by = 1) 
+
+out <- ode.1D(y = rep(1, Grid$N),
                 times = times, func = pde1D,
                 parms = NULL, nspec = 1)
-)
+#' En el siguiente gráfico 
+#' mostramos la variación de la temperatura en el tiempo a distintas
+#' profundidades 
+image(out, xlab = "minutes",ylab = "Distance, m",main = "Suelo arenoso húmedo", add.contour=TRUE)
+#' resolución utilizando diferencias finitas
+#' sin usar la librería ReacTran
 
-image(out, xlab = "time, days",ylab = "Distance, cm",main = "PDE", add.contour=TRUE)
+#'
+#' Código ejemplo de la libreria ReacTran para 2D
+#' 
+#' Suelo arenoso seco
+k <- 0.00017
+D <- k * area # k * Area
 
+out <- ode.1D(y = rep(1, Grid$N),
+              times = times, func = pde1D,
+              parms = NULL, nspec = 1)
+#' En el siguiente gráfico mostramos la variación de la temperatura en el tiempo a distintas
+#' profundidades 
+image(out, xlab = "minutes",ylab = "Distance, m",main = "Suelo arenoso seco k=0.00017", add.contour=TRUE)
+
+#' Alta conductividad en el suelo
+k <- 0.4
+D <- k * area # k * Area
+
+out <- ode.1D(y = rep(1, Grid$N),
+              times = times, func = pde1D,
+              parms = NULL, nspec = 1)
+#' En el siguiente gráfico mostramos la variación de la temperatura en el tiempo a distintas
+#' profundidades 
+image(out, xlab = "minutes",ylab = "Distance, m",main = "Suelo k=0.4", add.contour=TRUE)
+
+#' MODELO DE DIFUSIÓN DEL CALOR EN EL AIRE
+#' -------
+#' A continuación declaramos una función para la 
+#' la difusión del aire respecto a su temperatura
+#' Regresa la temperatura en sistema mts
+#' **REVISAR PAPER PROFESOR RAUL PEREZ** 
+#' Función de difusión del aire respecto a la temperatura
+#' pasamos t: tiempo o vector índice
+#' h: altura o indice del vector de altura a considerar
+#' temp: matriz de temperaturas vs t y h
+#' pression: matriz de presion vs t y h
+#' Regresa un vector con los valores de difusión **VERIFICAR**
+difussion.air <- function(t,h,temp, pression)
+{
+ return (0.211/pression[t,]) * (temp[t,]/273)^194 
+}
+#' Valores iniciales del problema
+#' 
+#' 
+Q <- 1
+Cext <- 1
+C.upp <- 0.001
+#' Grilla vertical 
+Grid <- setup.grid.1D(x.down=2,x.up=-1,N=1000,L=10)
+#' Simulamos 12 horas (720 minutos) simulamos
+times <- seq(0, 720, by = 1) 
+l <- length(times)
+temperature <- matrix(data=runif(Grid$N*l,min=-3,max=2),nrow=l,ncol=Grid$N)
+pression <- matrix(data=runif(Grid$N*l,min=1000,max=1200),nrow=nrow(times),ncol=Grid$N)
+
+my.parms <- NULL
+
+pde1D <-function(t, C, parms) {
+  #ARREGLAR EL TERMINO DE DIFUSSION
+  
+  D <- (0.211/pression[t,]) * (temp[t,]/273)^194 
+  
+  tran <- tran.1D(C = C, D = D,
+                  C.up = Cext,
+                  #C.up = Cext,
+                  dx = Grid)$dC
+  list(tran-Q) # return value: rate of change
+}
+
+std<-steady.1D(y =rep(0,Grid$N),
+               func = pde1D, parms = my.parms, nspec = 1)
+
+plot(Grid$x.mid, std$y, type = "l", lwd = 2, 
+     main = "steady-state PDE", xlab = "x", ylab = "T", col = "red")
+
+
+out <- ode.1D(y = rep(1, Grid$N),
+              times = times, func = pde1D,
+              parms = NULL, nspec = 1)
+#' En el siguiente gráfico 
+#' mostramos la variación de la temperatura en el tiempo a distintas
+#' profundidades 
+image(out, xlab = "minutes",ylab = "Distance, m",main = "Suelo arenoso húmedo", add.contour=TRUE)
+
+
+#'  REFERENCIAS
+#'  
+#' [1] Código extraído del pdf titulado como
+#' Soetaert, K., Meysman, F., & Petzoldt, T. (2010). 
+#' Solving differential equations in R. AIP Conference Proceedings, 1281(December),
+#'  31–34. doi:10.1063/1.3498463
+#'  
