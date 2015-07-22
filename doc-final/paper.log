@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.11.10)  27 JAN 2015 13:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.11.10)  20 JUL 2015 21:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -690,11 +690,7 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-)) (./paper.aux
-
-LaTeX Warning: Label `fig:T3-result' multiply defined.
-
-)
+)) (./paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
@@ -709,7 +705,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
- (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count148
 \scratchdimen=\dimen176
@@ -781,198 +778,76 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 89.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (3.28334pt too wide) in paragraph at lines 99--120
+Overfull \hbox (3.28334pt too wide) in paragraph at lines 99--109
 []\OT1/cmr/m/n/9 Las heladas son un evento me-te-o-rol^^Sogico que oca-siona gr
 andes
  []
 
 
-LaTeX Warning: Citation `snyder2005frost' on page 1 undefined on input line 130
+LaTeX Warning: Citation `snyder2005frost' on page 1 undefined on input line 119
 .
 
 
-LaTeX Warning: Citation `inv-news' on page 1 undefined on input line 134.
+LaTeX Warning: Citation `inv-news' on page 1 undefined on input line 123.
 
 [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Citation `inv-news' on page 2 undefined on input line 195.
+LaTeX Warning: Citation `inv-news' on page 2 undefined on input line 155.
 
-<casilla.png, id=16, 655.44875pt x 435.6275pt>
+<casilla.png, id=17, 655.44875pt x 435.6275pt>
 File: casilla.png Graphic file (type png)
  <use casilla.png>
-Package pdftex.def Info: casilla.png used on input line 199.
+Package pdftex.def Info: casilla.png used on input line 159.
 (pdftex.def)             Requested size: 242.98541pt x 161.49207pt.
 
 
-LaTeX Warning: Citation `saavedraTesis' on page 2 undefined on input line 207.
+LaTeX Warning: Citation `saavedraTesis' on page 2 undefined on input line 167.
 
 
 LaTeX Warning: Citation `pid-fca-uncu-dataset' on page 2 undefined on input lin
-e 208.
+e 168.
 
 [2 <./casilla.png>] <grafico.png, id=22, 693.792pt x 477.785pt>
 File: grafico.png Graphic file (type png)
 
 <use grafico.png>
-Package pdftex.def Info: grafico.png used on input line 225.
+Package pdftex.def Info: grafico.png used on input line 185.
 (pdftex.def)             Requested size: 343.6542pt x 236.66104pt.
+ [3 <./grafico.png>] [4] [5] (./paper.bbl) [6] (./paper.aux)
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3 <./grafico.png>]
-
-LaTeX Warning: Citation `schluter2012survey' on page 4 undefined on input line 
-301.
-
-[4]
-
-LaTeX Warning: Citation `logtag-datalogger' on page 5 undefined on input line 4
-12.
-
-
-LaTeX Warning: Citation `pid-fca-uncu-dataset' on page 5 undefined on input lin
-e 412.
-
-[5] [6]
-
-LaTeX Warning: Citation `schluter2014ibmap' on page 7 undefined on input line 5
-03.
-
-
-LaTeX Warning: Citation `bromberg2009efficient' on page 7 undefined on input li
-ne 504.
-
-
-LaTeX Warning: Citation `spirtes2000causation' on page 7 undefined on input lin
-e 505.
-
-
-LaTeX Warning: Citation `schluter2014ibmap' on page 7 undefined on input line 5
-06.
-
-
-Overfull \hbox (16.09937pt too wide) in paragraph at lines 513--518
-\OT1/cmr/m/n/10 scripts/structured-learning/output/structures, y para ibmaph en
- scripts/structured-
- []
-
-<T3-summarize.png, id=45, 477.785pt x 306.14375pt>
-File: T3-summarize.png Graphic file (type png)
- <use T3-summarize.png>
-Package pdftex.def Info: T3-summarize.png used on input line 532.
-(pdftex.def)             Requested size: 358.33786pt x 229.60724pt.
-
-Overfull \hbox (11.21432pt too wide) in paragraph at lines 532--533
-[][] 
- []
-
-
-Overfull \hbox (15.1233pt too wide) in paragraph at lines 536--538
-\OT1/cmtt/m/n/10 / / docs . google . com / spreadsheets / d / 16cIB4ZQ2kGtz6VOB
-qyA9paCYtCYshQuPt7 _
- []
-
-[7]
-Overfull \hbox (41.37308pt too wide) in paragraph at lines 625--625
-[]\OT1/cmtt/m/n/10 [1] "/home/usuario/phd/heladas/frost/heladas/scripts/dataset
-s/T_1_b_8.csv"[] 
- []
-
-[8 <./T3-summarize.png>]
-Overfull \hbox (41.37308pt too wide) in paragraph at lines 674--674
-[]\OT1/cmtt/m/n/10 [1] "/home/usuario/phd/heladas/frost/heladas/scripts/dataset
-s/T_2_b_8.csv"[] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9]
-Overfull \hbox (41.37308pt too wide) in paragraph at lines 723--723
-[]\OT1/cmtt/m/n/10 [1] "/home/usuario/phd/heladas/frost/heladas/scripts/dataset
-s/T_3_b_8.csv"[] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-No file paper.bbl.
-
-Overfull \hbox (157.76532pt too wide) in paragraph at lines 799--812
-\OT1/cmr/m/n/10 vin-cu-la-dos a dis-cretizaci^^Son (SLIDES http://stat.skku.ac.
-kr/myhuh/homepage/specialLectures/SDULecture.pdf)
- []
-
-
-Overfull \hbox (6.65488pt too wide) in paragraph at lines 799--812
-\OT1/cmr/m/n/10 Re-copi-laci^^Son de info in-tere-sante so-bre mu-tual in-for-m
-a-tion y su im-ple-mentaci^^Son
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 799--812
-
- []
-
-
-Overfull \hbox (47.87317pt too wide) in paragraph at lines 814--814
- [] \OT1/cmtt/m/n/10 RECOMENDABLE!!! --> Entropy-Based Inference using R and th
-e np Package: 
- []
-
-
-Overfull \hbox (0.62358pt too wide) in paragraph at lines 817--817
- [] \OT1/cmtt/m/n/10 OTRO DOC m^^Sas info en "Inequality, Entropy and Goodness 
-of Fit"[] 
- []
-
-
-Overfull \hbox (100.37271pt too wide) in paragraph at lines 819--819
- [] \OT1/cmtt/m/n/10 UNAS SLIDES ACLARATORIAS http://www.unc.edu/~maguilar/metr
-ics/Myslides_trans2.pdf[] 
- []
-
-[12] (./paper.aux)
-
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 11651 strings out of 493304
- 212655 string characters out of 6139870
- 264530 words of memory out of 5000000
- 14834 multiletter control sequences out of 15000+600000
- 13707 words of font info for 53 fonts, out of 8000000 for 9000
+ 11507 strings out of 493304
+ 209899 string characters out of 6139870
+ 264361 words of memory out of 5000000
+ 14694 multiletter control sequences out of 15000+600000
+ 11425 words of font info for 44 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,10n,80p,515b,738s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,6n,57p,445b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on paper.pdf (12 pages, 440938 bytes).
+t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on paper.pdf (6 pages, 377338 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
+ 94 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

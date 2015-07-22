@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: plain.bst
+Database file #1: references.bib
+Repeated entry---line 38 of file references.bib
+ : @book{snyder2005frost
+ :                      ,
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in inv-news
+Warning--empty author in inv-news
+Warning--empty year in pid-fca-uncu-dataset
+You've used 4 entries,
+            2118 wiz_defined-function locations,
+            518 strings with 4676 characters,
+and the built_in function-call counts, 820 in all, are:
+= -- 80
+> -- 28
+< -- 0
++ -- 12
+- -- 8
+* -- 42
+:= -- 155
+add.period$ -- 11
+call.type$ -- 4
+change.case$ -- 17
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 36
+empty$ -- 68
+format.name$ -- 8
+if$ -- 164
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 2
+newline$ -- 22
+num.names$ -- 6
+pop$ -- 20
+preamble$ -- 1
+purify$ -- 12
+quote$ -- 0
+skip$ -- 22
+stack$ -- 0
+substring$ -- 20
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 14
+warning$ -- 3
+while$ -- 6
+width$ -- 5
+write$ -- 42
+(There was 1 error message)
